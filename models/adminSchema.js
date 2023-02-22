@@ -59,7 +59,7 @@ adminSchema.pre("save", async function (next) {
     next();
   }
   this.password = await bcrypt.hash(this.password, 10);
-  this.confirmpassword = await bcrypt.hash(this.confirmpassword, 10);
+  this.cpassword = await bcrypt.hash(this.cpassword, 10);
 });
 
 //verify password
