@@ -13,6 +13,9 @@ const userSchema = new mongoose.Schema({
   course: { type: String, required: true },
 
   branch: { type: String, required: true },
+   year: { type: Number, required: true }, 
+
+  semester: { type: Number, required: true },
 
   email: {
     type: String,
