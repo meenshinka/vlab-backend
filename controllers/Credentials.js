@@ -7,9 +7,9 @@ const User = require("../models/userSchema.js");
 const jwt = require("jsonwebtoken");
 
 const Asignup = async (req, res) => {
-  const { name, course, branch, email, password, cpassword } = req.body;
+  const { name, course, branch,year,semester, email, password, cpassword } = req.body;
   try {
-    if (!(name || course || branch || email || password || cpassword)) {
+    if (!(name || course || branch||year||semester || email || password || cpassword)) {
       return res.send("Enter the Credentials");
     }
     if (password != cpassword) {
@@ -23,6 +23,8 @@ const Asignup = async (req, res) => {
       name,
       course,
       branch,
+      year,
+      semester,
       email,
       password,
       cpassword,
@@ -65,10 +67,10 @@ const Alogin = async (req, res) => {
 };
 
 const Usignup = async (req, res) => {
-  const { name, phone, email, password, cpassword } = req.body;
+  const { name,course,branch, year,semester, email, password, cpassword } = req.body;
 
   try {
-    if (!(name || phone || email || password || cpassword)) {
+    if (!(name || course||branch||year||semester || email || password || cpassword)) {
       return res.status(422).json({ success: false });
     }
     if (password != cpassword) {
@@ -82,6 +84,8 @@ const Usignup = async (req, res) => {
       name,
       course,
       branch,
+      year,
+      semester,
       email,
       password,
       cpassword,
@@ -90,7 +94,7 @@ const Usignup = async (req, res) => {
     if (registered) {
       //jwt thing
       const token = await registered.jwtGenerateToken();
-      res.status(200).json({ success: "registration successful" });
+      res.status(200).render("/").json({ success: "registration successful" });
     } else {
       return res.status(201).json({ success: "Some Unknown Error" });
     }
